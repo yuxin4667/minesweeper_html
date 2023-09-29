@@ -17,47 +17,37 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(9, 40px);
+            grid-template-columns: repeat(9, 45px);
             grid-gap: 2px;
             text-align: center;
             vertical-align: middle;
+            grid-auto-flow: row;
+            margin: 10px;
         }
 
         .cell {
             width: 40px;
             height: 40px;
-            border: 1px solid #1e1e1f;
+            border: 2px solid #1e1e1f;
             text-align: center;
             vertical-align: middle;
             font-weight: bold;
-            font-family: Microsoft JhengHei;
+            font-family: Jazz LET, fantasy;
             align-items: center;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        .flag {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #2f129a;
-            text-align: center;
-            vertical-align: middle;
-            font-weight: bold;
-            font-family: Microsoft JhengHei;
-            align-items: center;
-            font-size: 22px;
+            font-size: 24px;
+            border-radius: 3px;
             cursor: pointer;
         }
 
         .btn {
-            width: 40px;
-            height: 40px;
+            width: 41px;
+            height: 41px;
             background-color: gainsboro;
-            border-radius: 8px;
-            border-color: gainsboro;
+            border-radius: 3px;
+            border-color: rgb(148, 148, 148);
             content: "🚩";
-            font-size: 16px;
-            margin: 2px;
+            font-size: 20px;
+            margin-right: 13px;
 
         }
     </style>
@@ -65,11 +55,15 @@
 
 <body>
 
-    <div style="text-align: center;height: 600px;background-color: rgb(210, 217, 223);">
-        <h1 style="font-family: Microsoft JhengHei;font-size: 32px;"> 💣 M i n e s w e e p e r 💣 </h1>
+    <div style="text-align: right;margin-right:5px;height: 600px;background-color: rgb(210, 217, 223);">
+        <h1 style="text-align: center;font-family: Jazz LET, fantasy;font-size: 40px;"> 💣 M i n e s w e e p e
+            r 💣
+        </h1>
         <button class="btn" id="js-btn">🚩</button>
         <div class="grid" id="grid"></div>
+
     </div>
+
     <script>
         // alert('aaa');
         const gridSize = 9;  // 遊戲格子大小
@@ -86,6 +80,7 @@
         function dis() {
             f = 1;
             document.getElementById("js-btn").style.background = 'darkgray';
+            document.getElementById("js-btn").innerHTML = ' ';
         }
 
         function createGrid() {
@@ -101,6 +96,8 @@
                     cell.dataset.col = j;
                     cell.addEventListener("click", revealCell);
                     grid.appendChild(cell);
+
+                    console.log(`${i}, ${j}`);
                 }
             }
         }
@@ -120,6 +117,7 @@
             const cell = event.target;
             const row = parseInt(cell.dataset.row);
             const col = parseInt(cell.dataset.col);
+            console.log(`${remainmine}, ${space}`);
             if (remainmine == space) {
                 alert("遊戲結束，恭喜獲勝!");
             }
@@ -150,7 +148,8 @@
                 f = 0;
                 arr[row * gridSize + col] = 1;
                 document.getElementById("js-btn").style.background = 'gainsboro';
-                if (remainmine === 0) {
+                document.getElementById("js-btn").innerHTML = '🚩';
+                if (remainmine == space) {
                     alert("遊戲結束，恭喜獲勝!");
                 }
             }
