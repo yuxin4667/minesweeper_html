@@ -74,7 +74,7 @@
         // alert('aaa');
         const gridSize = 9;  // 遊戲格子大小
         const mineCount = 10; // 地雷數量
-        var remainmine = 0;//
+        var remainmine = 0;
         const space = gridSize * gridSize - mineCount;
         var f = 0;
         let arr = new Array(gridSize * gridSize);
@@ -86,8 +86,6 @@
         function dis() {
             f = 1;
             document.getElementById("js-btn").style.background = 'darkgray';
-            document.getElementById("js-btn").value = "a";
-            //document.querySelector("js-btn").value = 'Remove';
         }
 
         function createGrid() {
@@ -96,8 +94,6 @@
             for (let i = 0; i < gridSize; i++) {
                 for (let j = 0; j < gridSize; j++) {
                     const cell = document.createElement("div");
-
-                    //const element = document.getElementById('js-btn');
                     element.addEventListener('click', dis);
 
                     cell.classList.add("cell");
@@ -124,8 +120,6 @@
             const cell = event.target;
             const row = parseInt(cell.dataset.row);
             const col = parseInt(cell.dataset.col);
-            //const element = document.getElementById('flag');
-            //element.addEventListener('click', dis);
             if (remainmine == space) {
                 alert("遊戲結束，恭喜獲勝!");
             }
@@ -139,7 +133,7 @@
                     const mineCount = countAdjacentMines(row, col);
                     cell.textContent = mineCount;
                     cell.style.backgroundColor = "lightgray";
-                    remainmine++;//fl
+                    remainmine++;
                     cell.removeEventListener("click", revealCell);
                     if (remainmine == space) {
                         alert("遊戲結束，恭喜獲勝!");
@@ -180,7 +174,6 @@
 
         createGrid();
         placeMines();
-        //</div>
     </script>
 </body>
 
